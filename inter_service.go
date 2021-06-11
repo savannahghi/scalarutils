@@ -15,6 +15,7 @@ import (
 	"time"
 
 	"github.com/dgrijalva/jwt-go"
+	"github.com/savannahghi/server_utils"
 	"gopkg.in/yaml.v2"
 )
 
@@ -157,7 +158,7 @@ func InterServiceAuthenticationMiddleware() func(http.Handler) http.Handler {
 					errs = append(errs, errMap)
 				}
 
-				WriteJSONResponse(w, errs, http.StatusUnauthorized)
+				server_utils.WriteJSONResponse(w, errs, http.StatusUnauthorized)
 			})
 	}
 }
@@ -168,7 +169,7 @@ func HasValidJWTBearerToken(r *http.Request) (bool, map[string]string, *jwt.Toke
 	bearerToken, err := ExtractBearerToken(r)
 	if err != nil {
 
-		return false, ErrorMap(err), nil
+		return false, server_utils.ErrorMap(err), nil
 	}
 
 	claims := &Claims{}
@@ -178,7 +179,7 @@ func HasValidJWTBearerToken(r *http.Request) (bool, map[string]string, *jwt.Toke
 	})
 
 	if err != nil {
-		return false, ErrorMap(err), nil
+		return false, server_utils.ErrorMap(err), nil
 	}
 
 	return true, nil, token
