@@ -1,9 +1,5 @@
 # SIL Base Library
 
-[![pipeline status](https://gitlab.slade360emr.com/go/base/badges/master/pipeline.svg)](https://gitlab.slade360emr.com/go/base/-/commits/master)
-
-[![coverage report](https://gitlab.slade360emr.com/go/base/badges/master/coverage.svg)](https://gitlab.slade360emr.com/go/base/-/commits/master)
-
 This package provides common utilities for our Go servers e.g an API client
 that works with Slade 360 REST APIs and Slade 360 auth server.
 
