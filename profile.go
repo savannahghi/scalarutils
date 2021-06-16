@@ -324,6 +324,9 @@ type UserProfile struct {
 
 	PushTokens []string `json:"pushTokens,omitempty" firestore:"pushTokens"`
 
+	// Role of the user in the system. Valid for Suppliers, SIL employees and Agents
+	Role RoleType `json:"role,omitempty" firestore:"role"`
+
 	// what the user is allowed to do. Only valid for admins
 	Permissions []PermissionType `json:"permissions,omitempty" firestore:"permissions"`
 
@@ -364,6 +367,42 @@ type UserCommunicationsSetting struct {
 	AllowEmail    bool   `json:"allowEmail" firestore:"allowEmail"`
 }
 
+//NavAction is a Navigation Action that a user can perform on the app
+type NavAction struct {
+	//  The name of the action
+	Title string `json:"title"`
+
+	// How the action is handled when tapped
+	OnTapRoute string `json:"onTapRoute"`
+
+	// A link to a PNG image that would serve as an avatar
+	Icon Link `json:"icon"`
+
+	// Whether the user has marked the action as a favourite
+	Favourite bool `json:"favourite"`
+
+	// Sub menus in a navigation action
+	Nested []NestedNavAction `json:"nested"`
+}
+
+//NestedNavAction is a nested navigation action which  is a sub menu
+type NestedNavAction struct {
+	//  The name of the action
+	Title string `json:"title"`
+
+	// How the action is handled when tapped
+	OnTapRoute string `json:"onTapRoute"`
+}
+
+//NavigationActions are Role based Navigation Actions for a User
+type NavigationActions struct {
+	// The primary actions the user can perform
+	Primary []NavAction `json:"primary"`
+
+	// The secondary action the user can perform
+	Secondary []NavAction `json:"secondary"`
+}
+
 // UserResponse returns a user's sign up/in response
 type UserResponse struct {
 	Profile               *UserProfile               `json:"profile"`
@@ -371,6 +410,7 @@ type UserResponse struct {
 	CustomerProfile       *Customer                  `json:"customerProfile"`
 	CommunicationSettings *UserCommunicationsSetting `json:"communicationSettings"`
 	Auth                  AuthCredentialResponse     `json:"auth"`
+	NavActions            *NavigationActions         `json:"navigationActions"`
 }
 
 // AuthCredentialResponse represents a user login response
