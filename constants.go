@@ -52,12 +52,7 @@ const (
 	// TestUserEmail is used by integration tests
 	TestUserEmail = "be.well@bewell.co.ke"
 
-	// OTPCollectionName is the name of the collection used to persist single
-	// use verification codes on Firebase
-	OTPCollectionName         = "otps"
-	EmailOptInCollectionName  = "email_opt_ins"
-	PhoneOptInCollectionName  = "phone_opt_ins"
-	USSDSessionCollectionName = "ussd_signup_sessions"
+	EmailOptInCollectionName = "email_opt_ins"
 
 	// IdentifierCollectionName is used to record randomly generated identifiers so that they
 	// are not re-issued

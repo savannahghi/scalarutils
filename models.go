@@ -5,24 +5,6 @@ import (
 	"time"
 )
 
-// PhoneOptIn is used to persist and manage phone communication whitelists
-type PhoneOptIn struct {
-	MSISDN  string `json:"msisdn" firestore:"msisdn"`
-	OptedIn bool   `json:"optedIn" firestore:"optedIn"`
-}
-
-//IsEntity ...
-func (p PhoneOptIn) IsEntity() {}
-
-// USSDSessionLog is used to persist a log of USSD sessions
-type USSDSessionLog struct {
-	MSISDN    string `json:"msisdn" firestore:"msisdn"`
-	SessionID string `json:"sessionID" firestore:"sessionID"`
-}
-
-//IsEntity ...
-func (p USSDSessionLog) IsEntity() {}
-
 // EmailOptIn is used to persist and manage email communication whitelists
 type EmailOptIn struct {
 	Email   string `json:"email" firestore:"optedIn"`

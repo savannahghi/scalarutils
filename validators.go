@@ -2,7 +2,6 @@ package go_utils
 
 import (
 	"fmt"
-	"log"
 	"regexp"
 	"strings"
 
@@ -39,32 +38,8 @@ func NormalizeMSISDN(msisdn string) (*string, error) {
 	return &cleaned, nil
 }
 
-// MustNormalizeMSISDN validates the input phone number otherwise it panics
-func MustNormalizeMSISDN(msisdn string) (*string, error) {
-	if !IsMSISDNValid(msisdn) {
-		return nil, fmt.Errorf("invalid phone number: %s", msisdn)
-	}
-	num, err := libphonenumber.Parse(msisdn, defaultRegion)
-	if err != nil {
-		log.Panic(fmt.Sprintf("invalid phone number: %s", msisdn))
-	}
-	formatted := libphonenumber.Format(num, libphonenumber.INTERNATIONAL)
-	cleaned := strings.ReplaceAll(formatted, " ", "")
-	return &cleaned, nil
-}
-
 // StringSliceContains tests if a string is contained in a slice of strings
 func StringSliceContains(s []string, e string) bool {
-	for _, a := range s {
-		if a == e {
-			return true
-		}
-	}
-	return false
-}
-
-// IntSliceContains tests if a string is contained in a slice of strings
-func IntSliceContains(s []int, e int) bool {
 	for _, a := range s {
 		if a == e {
 			return true
