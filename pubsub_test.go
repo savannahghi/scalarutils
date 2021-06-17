@@ -13,6 +13,7 @@ import (
 	"cloud.google.com/go/pubsub"
 	"github.com/rs/xid"
 	base "github.com/savannahghi/go_utils"
+	"github.com/savannahghi/server_utils"
 	"github.com/segmentio/ksuid"
 	"google.golang.org/api/idtoken"
 )
@@ -209,7 +210,7 @@ func TestVerifyPubSubJWTAndDecodePayload(t *testing.T) {
 
 func TestEnsureTopicsExist(t *testing.T) {
 	ctx := context.Background()
-	projectID := base.MustGetEnvVar(base.GoogleCloudProjectIDEnvVarName)
+	projectID := server_utils.MustGetEnvVar(base.GoogleCloudProjectIDEnvVarName)
 	pubsubClient, err := pubsub.NewClient(ctx, projectID)
 	if err != nil {
 		t.Errorf("can't initialize pubsub client: %v", err)
@@ -271,7 +272,7 @@ func TestEnsureTopicsExist(t *testing.T) {
 
 func TestEnsureSubscriptionsExist(t *testing.T) {
 	ctx := context.Background()
-	projectID := base.MustGetEnvVar(base.GoogleCloudProjectIDEnvVarName)
+	projectID := server_utils.MustGetEnvVar(base.GoogleCloudProjectIDEnvVarName)
 	pubsubClient, err := pubsub.NewClient(ctx, projectID)
 	if err != nil {
 		t.Errorf("can't initialize pubsub client: %v", err)
@@ -364,7 +365,7 @@ func TestEnsureSubscriptionsExist(t *testing.T) {
 
 func TestGetPushSubscriptionConfig(t *testing.T) {
 	ctx := context.Background()
-	projectID := base.MustGetEnvVar(base.GoogleCloudProjectIDEnvVarName)
+	projectID := server_utils.MustGetEnvVar(base.GoogleCloudProjectIDEnvVarName)
 	pubsubClient, err := pubsub.NewClient(ctx, projectID)
 	if err != nil {
 		t.Errorf("can't initialize pubsub client: %v", err)
@@ -557,7 +558,7 @@ func TestNamespacePubsubIdentifier(t *testing.T) {
 
 func TestPublishToPubsub(t *testing.T) {
 	ctx := context.Background()
-	projectID := base.MustGetEnvVar(base.GoogleCloudProjectIDEnvVarName)
+	projectID := server_utils.MustGetEnvVar(base.GoogleCloudProjectIDEnvVarName)
 	pubsubClient, err := pubsub.NewClient(ctx, projectID)
 	if err != nil {
 		t.Errorf("can't initialize pubsub client: %v", err)
@@ -645,7 +646,7 @@ func TestPublishToPubsub(t *testing.T) {
 }
 
 func TestGetServiceAccountEmail(t *testing.T) {
-	projectNumber := base.MustGetEnvVar(base.GoogleProjectNumberEnvVarName)
+	projectNumber := server_utils.MustGetEnvVar(base.GoogleProjectNumberEnvVarName)
 	expectedServiceAccountEmail := fmt.Sprintf(
 		"%s-compute@developer.gserviceaccount.com", projectNumber)
 	tests := []struct {

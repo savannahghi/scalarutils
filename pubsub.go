@@ -12,6 +12,8 @@ import (
 	"time"
 
 	"cloud.google.com/go/pubsub"
+	"github.com/savannahghi/converterandformatter"
+	"github.com/savannahghi/server_utils"
 	"google.golang.org/api/idtoken"
 	"google.golang.org/api/iterator"
 )
@@ -144,7 +146,7 @@ func EnsureTopicsExist(
 
 	// ensure that all our desired topics are all created
 	for _, topicID := range topicIDs {
-		if !StringSliceContains(configuredTopics, topicID) {
+		if !converterandformatter.StringSliceContains(configuredTopics, topicID) {
 			_, err := pubsubClient.CreateTopic(ctx, topicID)
 			if err != nil {
 				return fmt.Errorf("can't create topic %s: %w", topicID, err)
@@ -360,7 +362,7 @@ func PublishToPubsub(
 // GetServiceAccountEmail inspects the environment to get the project number
 // and uses that to compose an email to use as a Google Cloud pub-sub email
 func GetServiceAccountEmail() (string, error) {
-	projectNumber, err := GetEnvVar(GoogleProjectNumberEnvVarName)
+	projectNumber, err := server_utils.GetEnvVar(GoogleProjectNumberEnvVarName)
 	if err != nil {
 		return "", fmt.Errorf(
 			"no %s env var: %w", GoogleProjectNumberEnvVarName, err)

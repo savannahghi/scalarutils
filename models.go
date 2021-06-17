@@ -5,27 +5,6 @@ import (
 	"time"
 )
 
-// EmailOptIn is used to persist and manage email communication whitelists
-type EmailOptIn struct {
-	Email   string `json:"email" firestore:"optedIn"`
-	OptedIn bool   `json:"optedIn" firestore:"optedIn"`
-}
-
-//IsEntity ...
-func (e EmailOptIn) IsEntity() {}
-
-// PIN is used to store a PIN (Personal Identifiation Number) associated
-// to a phone number sign up to Firebase
-type PIN struct {
-	UID     string `json:"uid" firestore:"uid"`
-	MSISDN  string `json:"msisdn,omitempty" firestore:"msisdn"`
-	PIN     string `json:"pin,omitempty" firestore:"pin"`
-	IsValid bool   `json:"isValid,omitempty" firestore:"isValid"`
-}
-
-//IsEntity ...
-func (p PIN) IsEntity() {}
-
 // Upload represents a file uploaded to cloud storage
 type Upload struct {
 	ID          string    `json:"id" firestore:"id"`
