@@ -256,6 +256,13 @@ type Cover struct {
 // IsEntity marks this struct as a GraphQL entity
 func (c Cover) IsEntity() {}
 
+// Date is a custom date type that maintains only date level precision
+type Date struct {
+	Year  int
+	Month int
+	Day   int
+}
+
 // BioData structure of bio data information for a user
 type BioData struct {
 	FirstName   *string `json:"firstName" firestore:"firstName"`

@@ -1,8 +1,9 @@
 package go_utils
 
 import (
-	"fmt"
 	"time"
+
+	"github.com/savannahghi/firebasetools"
 )
 
 // Upload represents a file uploaded to cloud storage
@@ -30,8 +31,8 @@ func (u Upload) SetID(id string) {
 }
 
 // GetID marks upload as a relay node
-func (u Upload) GetID() ID {
-	return IDValue(u.ID)
+func (u Upload) GetID() firebasetools.ID {
+	return firebasetools.IDValue(u.ID)
 }
 
 // UploadInput is used to send data for new uploads
@@ -41,16 +42,4 @@ type UploadInput struct {
 	Language    string `json:"language"`
 	Base64data  string `json:"base64data"`
 	Filename    string `json:"filename"`
-}
-
-// CustomError represents a custom error struct
-// Reference https://blog.golang.org/error-handling-and-go
-type CustomError struct {
-	Err     error  `json:"error,omitempty"`
-	Message string `json:"message,omitempty"`
-	Code    int    `json:"code,omitempty"`
-}
-
-func (e *CustomError) Error() string {
-	return fmt.Sprintf("%d: %s", e.Code, e.Message)
 }
