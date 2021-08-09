@@ -1,3 +1,6 @@
+![Linting and Tests](https://github.com/savannahghi/scalarutils/actions/workflows/ci.yml/badge.svg)
+[![Coverage Status](https://coveralls.io/repos/github/savannahghi/scalarutils/badge.svg?branch=main)](https://coveralls.io/github/savannahghi/scalarutils?branch=main)
+
 # Scalar Utils Library
 scalarutils are utilities used by several backend services. 
 
